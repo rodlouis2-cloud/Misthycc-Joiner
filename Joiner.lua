@@ -88,7 +88,7 @@ local TeleportService = game:GetService("TeleportService")
 local SoundService = game:GetService("SoundService")
 local UserInputService = game:GetService("UserInputService")
 
-local UI_NAME = "MisthyccJoinerDisc0rd=https://discord.gg/CeN59Rtu_GUI"
+local UI_NAME = "MisthyccJoinerDisc0rdhttps://discord.gg/CeN59Rtu_GUI"
 if CoreGui:FindFirstChild(UI_NAME) then CoreGui[UI_NAME]:Destroy() end
 if SoundService:FindFirstChild("MisthyccNotifSound") then SoundService.MisthyccNotifSound:Destroy() end
 
