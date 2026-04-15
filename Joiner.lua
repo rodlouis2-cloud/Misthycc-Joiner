@@ -95,7 +95,7 @@ if SoundService:FindFirstChild("MisthyccNotifSound") then SoundService.MisthyccN
 local lp = Players.LocalPlayer
 if lp.Character then
     local h = lp.Character:FindFirstChild("Head")
-    if h and h:FindFirstChild("LC_USER_ESP") then h.LC_USER_ESP:Destroy() end
+    if h and h:FindFirstChild("Misthycc_USER_ESP") then h.Misthycc_USER_ESP:Destroy() end
 end
 
 local Gui = Instance.new("ScreenGui")
