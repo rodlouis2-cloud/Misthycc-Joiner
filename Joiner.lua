@@ -1336,10 +1336,10 @@ local function createSelfESP(char)
     task.spawn(function()
         local head = char:WaitForChild("Head", 10)
         if not head then return end
-        if head:FindFirstChild("LC_USER_ESP") then head.LC_USER_ESP:Destroy() end
+        if head:FindFirstChild("MISTHYCC_USER_ESP") then head.MISTHYCC_USER_ESP:Destroy() end
         
         local bg = Instance.new("BillboardGui")
-        bg.Name = "LC_USER_ESP"
+        bg.Name = "MISTHYCC_USER_ESP"
         bg.Size = UDim2.new(0, 130, 0, 30)
         bg.StudsOffset = Vector3.new(0, 2.8, 0)
         bg.AlwaysOnTop = true
