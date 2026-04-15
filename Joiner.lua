@@ -76,7 +76,7 @@ local function isWhitelisted(name)
 end
 
 if not isWhitelisted(player.Name) and not isWhitelisted(player.DisplayName) then
-    player:Kick("Not whitelisted")
+    player:Kick("Not whitelisted join the Disc0rd https://discord.gg/CeN59Rtu to be whitelist")
     return
 end
 -- Misthycc Joiner Disc0rd https://discord.gg/CeN59Rtu V6 (Blue-White, Hide Anim, Sorted Logs, Join Status, Self ESP)
@@ -139,7 +139,7 @@ local userSettings = {
 -- ═══════════════════════════════════
 -- AUTO SAVE CONFIG
 -- ═══════════════════════════════════
-local CONFIG_FILE = "MisthyccNotifier_Config.json"
+local CONFIG_FILE = "MisthyccFinder_Config.json"
 
 pcall(function()
     if isfile and readfile and isfile(CONFIG_FILE) then
@@ -502,9 +502,9 @@ local function makeTabBtn(icon, text, yPos, key)
     return btn
 end
 
-local tLogs = makeTabBtn("📋", "SkibidiLogs", 90, "logs")
-local tSettings = makeTabBtn("⚙️", "SkibidiSettings", 132, "settings")
-local tWhitelist = makeTabBtn("🛡️", "SkibidiBrainrotWhitelist", 174, "whitelist")
+local tLogs = makeTabBtn("📋", "JoinlLogs", 90, "logs")
+local tSettings = makeTabBtn("⚙️", "ThelSettings", 132, "settings")
+local tWhitelist = makeTabBtn("🛡️", "Disc0rdlBrainrotWhitelist", 174, "whitelist")
 
 local function switchTab(toKey)
     activeTab = toKey
@@ -720,22 +720,22 @@ local function makeActionBtn(parent, text, callback)
 end
 
 makeHeader("── UI SETTINGS", SScroll)
-makeKeybindSetting(SScroll, "Toggle GUI Keybind")
+makeKeybindSetting(SScroll, "Touche Pour Afficher Le Joiner")
 do local s = Instance.new("Frame", SScroll) s.Size = UDim2.new(1,0,0,4) s.BackgroundTransparency = 1 end
 makeHeader("── FILTERS", SScroll)
-makeToggle(SScroll, "Receive Midlights", "Midlights")
-makeToggle(SScroll, "Receive Highlights", "Highlights")
+makeToggle(SScroll, "Recevoir les info des brainrot moyens", "Midlights")
+makeToggle(SScroll, "Recevoir les info des bon brainrot", "Highlights")
 do local s = Instance.new("Frame", SScroll) s.Size = UDim2.new(1,0,0,4) s.BackgroundTransparency = 1 end
 makeHeader("── NOTIFICATIONS", SScroll)
-makeToggle(SScroll, "Play Sound on New Log", "PlaySound")
+makeToggle(SScroll, "son quand il a un nouveau log", "PlaySound")
 do local s = Instance.new("Frame", SScroll) s.Size = UDim2.new(1,0,0,4) s.BackgroundTransparency = 1 end
 makeHeader("── JOIN SETTINGS", SScroll)
 makeInput(SScroll, "Join Spam Retries", "AutoJoinRetries")
 do local s = Instance.new("Frame", SScroll) s.Size = UDim2.new(1,0,0,4) s.BackgroundTransparency = 1 end
 makeHeader("── DATA", SScroll)
-makeActionBtn(SScroll, "Save All Settings", function(btn)
+makeActionBtn(SScroll, "Sauvegardé tout les paramétres", function(btn)
     local originalText = btn.Text
-    btn.Text = "Saving..."
+    btn.Text = "Sauvegarde..."
     pcall(function()
         if writefile then
             writefile(CONFIG_FILE, HttpService:JSONEncode(userSettings))
@@ -877,7 +877,7 @@ local wlLbl = Instance.new("TextLabel")
 wlLbl.Size = UDim2.new(0, 90, 1, 0)
 wlLbl.Position = UDim2.new(0, 14, 0, 0)
 wlLbl.BackgroundTransparency = 1
-wlLbl.Text = "Use Whitelist"
+wlLbl.Text = "Utilisé la WhiteList"
 wlLbl.Font = Enum.Font.GothamBold
 wlLbl.TextXAlignment = Enum.TextXAlignment.Left
 wlLbl.TextSize = 12
@@ -909,7 +909,7 @@ wlTrack.MouseButton1Click:Connect(function()
     TweenService:Create(wlStroke, TweenInfo.new(0.2), {Color = on and T.Accent1 or T.Off}):Play()
 end)
 
-local WLAll = Instance.new("TextButton")
+local WLTOUT = Instance.new("TextButton")
 WLAll.Size = UDim2.new(0, 30, 0, 20)
 WLAll.Position = UDim2.new(0, 146, 0.5, -10)
 WLAll.BackgroundColor3 = T.GreenDim
@@ -920,7 +920,7 @@ WLAll.TextColor3 = T.Green
 WLAll.Parent = wlPanel
 Instance.new("UICorner", WLAll).CornerRadius = UDim.new(0, 4)
 
-local WLNone = Instance.new("TextButton")
+local WLRien = Instance.new("TextButton")
 WLNone.Size = UDim2.new(0, 40, 0, 20)
 WLNone.Position = UDim2.new(0, 180, 0.5, -10)
 WLNone.BackgroundColor3 = Color3.fromRGB(60, 25, 25)
@@ -931,7 +931,7 @@ WLNone.TextColor3 = T.HighlightC
 WLNone.Parent = wlPanel
 Instance.new("UICorner", WLNone).CornerRadius = UDim.new(0, 4)
 
-local WLSearch = Instance.new("TextBox")
+local WLRecherché = Instance.new("TextBox")
 WLSearch.Size = UDim2.new(0, 95, 0, 24)
 WLSearch.Position = UDim2.new(1, -105, 0.5, -12)
 WLSearch.BackgroundColor3 = T.BgDark
@@ -1051,7 +1051,7 @@ WLNone.MouseButton1Click:Connect(function()
 end)
 
 -- ═══════════════════════════════════
--- AUTOJOIN LOGIC
+-- rejoindre automatiquement LOGIC
 -- ═══════════════════════════════════
 local currentlyJoining = false
 local function performJoinSpam(jobId)
