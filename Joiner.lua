@@ -79,7 +79,7 @@ if not isWhitelisted(player.Name) and not isWhitelisted(player.DisplayName) then
     player:Kick("Not whitelisted join the Disc0rd https://discord.gg/CeN59Rtu to be whitelist")
     return
 end
--- Misthycc Joiner Disc0rd https://discord.gg/CeN59Rtu V6 (Blue-White, Hide Anim, Sorted Logs, Join Status, Self ESP)
+-- Misthycc finder V1 (Blue-White, Hide Anim, Sorted Logs, Join Status, Self ESP)
 local HttpService = game:GetService("HttpService")
 local CoreGui = game:GetService("CoreGui")
 local TweenService = game:GetService("TweenService")
@@ -88,7 +88,7 @@ local TeleportService = game:GetService("TeleportService")
 local SoundService = game:GetService("SoundService")
 local UserInputService = game:GetService("UserInputService")
 
-local UI_NAME = "MisthyccJoinerDisc0rdhttps://discord.gg/CeN59Rtu_GUI"
+local UI_NAME = "MisthyccFinder_GUI"
 if CoreGui:FindFirstChild(UI_NAME) then CoreGui[UI_NAME]:Destroy() end
 if SoundService:FindFirstChild("MisthyccNotifSound") then SoundService.MisthyccNotifSound:Destroy() end
 
@@ -160,7 +160,7 @@ end)
 
 task.spawn(function()
     local lastSave = HttpService:JSONEncode(userSettings)
-    while _G.MisthyccRunning ~= false do
+    while _G.MisthyccdRunning ~= false do
         task.wait(3)
         pcall(function()
             local current = HttpService:JSONEncode(userSettings)
@@ -502,9 +502,9 @@ local function makeTabBtn(icon, text, yPos, key)
     return btn
 end
 
-local tLogs = makeTabBtn("📋", "JoinlLogs", 90, "logs")
-local tSettings = makeTabBtn("⚙️", "ThelSettings", 132, "settings")
-local tWhitelist = makeTabBtn("🛡️", "Disc0rdlBrainrotWhitelist", 174, "whitelist")
+local tLogs = makeTabBtn("📋", "Logs", 90, "logs")
+local tSettings = makeTabBtn("⚙️", "Settings", 132, "settings")
+local tWhitelist = makeTabBtn("🛡️", "Whitelist", 174, "whitelist")
 
 local function switchTab(toKey)
     activeTab = toKey
@@ -720,22 +720,22 @@ local function makeActionBtn(parent, text, callback)
 end
 
 makeHeader("── UI SETTINGS", SScroll)
-makeKeybindSetting(SScroll, "Touche Pour Afficher Le Joiner")
+makeKeybindSetting(SScroll, "Toggle GUI Keybind")
 do local s = Instance.new("Frame", SScroll) s.Size = UDim2.new(1,0,0,4) s.BackgroundTransparency = 1 end
 makeHeader("── FILTERS", SScroll)
-makeToggle(SScroll, "Recevoir les info des brainrot moyens", "Midlights")
-makeToggle(SScroll, "Recevoir les info des bon brainrot", "Highlights")
+makeToggle(SScroll, "Receive Midlights", "Midlights")
+makeToggle(SScroll, "Receive Highlights", "Highlights")
 do local s = Instance.new("Frame", SScroll) s.Size = UDim2.new(1,0,0,4) s.BackgroundTransparency = 1 end
 makeHeader("── NOTIFICATIONS", SScroll)
-makeToggle(SScroll, "son quand il a un nouveau log", "PlaySound")
+makeToggle(SScroll, "Play Sound on New Log", "PlaySound")
 do local s = Instance.new("Frame", SScroll) s.Size = UDim2.new(1,0,0,4) s.BackgroundTransparency = 1 end
 makeHeader("── JOIN SETTINGS", SScroll)
 makeInput(SScroll, "Join Spam Retries", "AutoJoinRetries")
 do local s = Instance.new("Frame", SScroll) s.Size = UDim2.new(1,0,0,4) s.BackgroundTransparency = 1 end
 makeHeader("── DATA", SScroll)
-makeActionBtn(SScroll, "Sauvegardé tout les paramétres", function(btn)
+makeActionBtn(SScroll, "Save All Settings", function(btn)
     local originalText = btn.Text
-    btn.Text = "Sauvegarde..."
+    btn.Text = "Saving..."
     pcall(function()
         if writefile then
             writefile(CONFIG_FILE, HttpService:JSONEncode(userSettings))
@@ -877,7 +877,7 @@ local wlLbl = Instance.new("TextLabel")
 wlLbl.Size = UDim2.new(0, 90, 1, 0)
 wlLbl.Position = UDim2.new(0, 14, 0, 0)
 wlLbl.BackgroundTransparency = 1
-wlLbl.Text = "Utilisé la WhiteList"
+wlLbl.Text = "Use Whitelist"
 wlLbl.Font = Enum.Font.GothamBold
 wlLbl.TextXAlignment = Enum.TextXAlignment.Left
 wlLbl.TextSize = 12
@@ -909,7 +909,7 @@ wlTrack.MouseButton1Click:Connect(function()
     TweenService:Create(wlStroke, TweenInfo.new(0.2), {Color = on and T.Accent1 or T.Off}):Play()
 end)
 
-local WLTOUT = Instance.new("TextButton")
+local WLAll = Instance.new("TextButton")
 WLAll.Size = UDim2.new(0, 30, 0, 20)
 WLAll.Position = UDim2.new(0, 146, 0.5, -10)
 WLAll.BackgroundColor3 = T.GreenDim
@@ -920,7 +920,7 @@ WLAll.TextColor3 = T.Green
 WLAll.Parent = wlPanel
 Instance.new("UICorner", WLAll).CornerRadius = UDim.new(0, 4)
 
-local WLRien = Instance.new("TextButton")
+local WLNone = Instance.new("TextButton")
 WLNone.Size = UDim2.new(0, 40, 0, 20)
 WLNone.Position = UDim2.new(0, 180, 0.5, -10)
 WLNone.BackgroundColor3 = Color3.fromRGB(60, 25, 25)
@@ -931,7 +931,7 @@ WLNone.TextColor3 = T.HighlightC
 WLNone.Parent = wlPanel
 Instance.new("UICorner", WLNone).CornerRadius = UDim.new(0, 4)
 
-local WLRecherché = Instance.new("TextBox")
+local WLSearch = Instance.new("TextBox")
 WLSearch.Size = UDim2.new(0, 95, 0, 24)
 WLSearch.Position = UDim2.new(1, -105, 0.5, -12)
 WLSearch.BackgroundColor3 = T.BgDark
@@ -1051,7 +1051,7 @@ WLNone.MouseButton1Click:Connect(function()
 end)
 
 -- ═══════════════════════════════════
--- rejoindre automatiquement LOGIC
+-- AUTOJOIN LOGIC
 -- ═══════════════════════════════════
 local currentlyJoining = false
 local function performJoinSpam(jobId)
@@ -1336,10 +1336,10 @@ local function createSelfESP(char)
     task.spawn(function()
         local head = char:WaitForChild("Head", 10)
         if not head then return end
-        if head:FindFirstChild("MISTHYCC_USER_ESP") then head.MISTHYCC_USER_ESP:Destroy() end
+        if head:FindFirstChild("LC_USER_ESP") then head.LC_USER_ESP:Destroy() end
         
         local bg = Instance.new("BillboardGui")
-        bg.Name = "MISTHYCC_USER_ESP"
+        bg.Name = "LC_USER_ESP"
         bg.Size = UDim2.new(0, 130, 0, 30)
         bg.StudsOffset = Vector3.new(0, 2.8, 0)
         bg.AlwaysOnTop = true
@@ -1361,7 +1361,7 @@ local function createSelfESP(char)
         local txt = Instance.new("TextLabel")
         txt.Size = UDim2.new(1, 0, 1, 0)
         txt.BackgroundTransparency = 1
-        txt.Text = "discord.gg/CeN59Rtu User"
+        txt.Text = ".gg/eqmaYed4Qs USER"
         txt.Font = Enum.Font.GothamBlack
         txt.TextSize = 13
         txt.TextColor3 = T.White
