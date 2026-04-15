@@ -79,7 +79,7 @@ if not isWhitelisted(player.Name) and not isWhitelisted(player.DisplayName) then
     player:Kick("Not whitelisted")
     return
 end
--- Misthycc Notifier V6 (Blue-White, Hide Anim, Sorted Logs, Join Status, Self ESP)
+-- Misthycc Joiner Disc0rd https://discord.gg/CeN59Rtu V6 (Blue-White, Hide Anim, Sorted Logs, Join Status, Self ESP)
 local HttpService = game:GetService("HttpService")
 local CoreGui = game:GetService("CoreGui")
 local TweenService = game:GetService("TweenService")
@@ -88,7 +88,7 @@ local TeleportService = game:GetService("TeleportService")
 local SoundService = game:GetService("SoundService")
 local UserInputService = game:GetService("UserInputService")
 
-local UI_NAME = "MisthyccNotifier_GUI"
+local UI_NAME = "MisthyccJoinerDisc0rd=https://discord.gg/CeN59Rtu_GUI"
 if CoreGui:FindFirstChild(UI_NAME) then CoreGui[UI_NAME]:Destroy() end
 if SoundService:FindFirstChild("MisthyccNotifSound") then SoundService.MisthyccNotifSound:Destroy() end
 
@@ -502,9 +502,9 @@ local function makeTabBtn(icon, text, yPos, key)
     return btn
 end
 
-local tLogs = makeTabBtn("📋", "Logs", 90, "logs")
-local tSettings = makeTabBtn("⚙️", "Settings", 132, "settings")
-local tWhitelist = makeTabBtn("🛡️", "Whitelist", 174, "whitelist")
+local tLogs = makeTabBtn("📋", "SkibidiLogs", 90, "logs")
+local tSettings = makeTabBtn("⚙️", "SkibidiSettings", 132, "settings")
+local tWhitelist = makeTabBtn("🛡️", "SkibidiBrainrotWhitelist", 174, "whitelist")
 
 local function switchTab(toKey)
     activeTab = toKey
@@ -1361,7 +1361,7 @@ local function createSelfESP(char)
         local txt = Instance.new("TextLabel")
         txt.Size = UDim2.new(1, 0, 1, 0)
         txt.BackgroundTransparency = 1
-        txt.Text = "LC USER"
+        txt.Text = "discord.gg/CeN59Rtu User"
         txt.Font = Enum.Font.GothamBlack
         txt.TextSize = 13
         txt.TextColor3 = T.White
